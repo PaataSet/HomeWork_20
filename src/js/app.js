@@ -5,19 +5,16 @@ console.log("HomeWork_20");
 1. setTimeout ან setInterval - ის გამოყენებით გააკეთეთ საათი რომელიც იმუშავებს როგორც ნამდვილი სააათი. გამოიყენეთ 
 ატვირთული სურათი (საათი.png).
 */
-// Calling showTime function at every second
+
 setInterval(showTime, 1000);
 
-// Defining showTime funcion
 function showTime() {
-  // Getting current time and date
   let time = new Date();
   let hour = time.getHours();
   let min = time.getMinutes();
   let sec = time.getSeconds();
   am_pm = "AM";
 
-  // Setting time for 12 Hrs format
   if (hour >= 12) {
     if (hour > 12) hour -= 12;
     am_pm = "PM";
@@ -32,19 +29,10 @@ function showTime() {
 
   let currentTime = hour + ":" + min + ":" + sec + am_pm;
 
-  // Displaying the time
   document.getElementById("clock").innerHTML = currentTime;
 }
 
 showTime();
-
-// მეორე ვერსია
-setInterval(myTimer, 1000);
-
-function myTimer() {
-  const date = new Date();
-  document.getElementById("clock2").innerHTML = date.toLocaleTimeString();
-}
 
 /* 
 2. ლექციაზე შექმნილ სლაიდერს დავამატოთ: 
@@ -60,30 +48,24 @@ https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event
  3*(optional) დავამატოთ მარტივი countdown რომელიც გვიჩვენებს მომდევნო ლექციამდე (3 დეკემბერი, 20:00) დარჩენილ 
  დროს (დღე, საათი, წუთი)
  */
-// Set the date we're counting down to
-var countDownDate = new Date("Dec 10, 2024 20:00:00").getTime();
 
-// Update the count down every 1 second
-var x = setInterval(function () {
-  // Get today's date and time
-  var now = new Date().getTime();
+let countDownDate = new Date("Dec 10, 2024 20:00:00").getTime();
 
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+let x = setInterval(function () {
+  let now = new Date().getTime();
 
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  let distance = countDownDate - now;
 
-  // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML =
+  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("clock2").innerHTML =
     days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-  // If the count down is over, write some text
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+    document.getElementById("clock2").innerHTML = "EXPIRED";
   }
 }, 1000);
